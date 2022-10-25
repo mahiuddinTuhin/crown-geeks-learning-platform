@@ -1,9 +1,11 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
+import { router } from "./routes/router";
 
 function App() {
   return (
-    <div className="App">
-      <h1>First git commit</h1>
+    <div>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }

@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.darkBack {
+  background-color: rgb(68, 67, 67);
+  color: white;
+}
+
+.lightBack {
+  background-color: rgb(247, 247, 247);
+  color: black;
+}
