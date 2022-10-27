@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../components/Blog/Blog";
+import CourseDetails from "../components/courses/CourseDetails";
 import Courses from "../components/courses/Courses";
-import Home from "../components/home/Home";
+import FAQ from "../components/FAQ/FAQ";
 import Main from "../Layout/Main";
+import HomeContainer from "../shared/HomeContainer";
 import Login from "../shared/Login";
 import SIgnup from "../shared/SIgnup";
 
@@ -12,7 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <HomeContainer></HomeContainer>,
       },
       {
         path: "/login",
@@ -24,16 +27,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
+        loader: async () => {
+          return fetch("https://crown-geeks-server-i7su.vercel.app/courses");
+        },
         element: <Courses></Courses>,
-        loader: fetch("https://crown-geeks-server.vercel.app/courses"),
+      },
+      {
+        path: "/course/:id",
+        loader: async ({ params }) => {
+          return fetch(
+            `https://crown-geeks-server-i7su.vercel.app/course/${params.id}`
+          );
+        },
+        element: <CourseDetails></CourseDetails>,
       },
       {
         path: "/blog",
-        element: <Home></Home>,
+        element: <Blog />,
       },
       {
         path: "/faq",
-        element: <Home></Home>,
+        element: <FAQ />,
       },
     ],
   },

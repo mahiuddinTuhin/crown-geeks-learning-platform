@@ -9,7 +9,6 @@ export const Header = () => {
   const [navText, setNavText] = useState("gray");
   const [navBack, setNavBack] = useState("bg-violet-200");
   const { darkMode, setDarkMode, user, logOut } = useContext(MainContext);
-  console.log(user?.photoURL);
 
   const handleLogOut = () => {
     logOut()
@@ -116,7 +115,7 @@ export const Header = () => {
                       to="/login"
                       aria-label="Sign in"
                       title="Sign in"
-                      className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-400 onHover`}
+                      className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-700 onHover`}
                     >
                       Sign in
                     </NavLink>
@@ -124,7 +123,7 @@ export const Header = () => {
                   <li>
                     <NavLink
                       to="/signup"
-                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-500 focus:shadow-outline focus:outline-none"
                       aria-label="Sign up"
                       title="Sign up"
                     >

@@ -21,6 +21,7 @@ const googleProvider = new GoogleAuthProvider();
 //  user context started here
 
 const UserContex = ({ children }) => {
+  const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
@@ -59,7 +60,6 @@ const UserContex = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
       setLoading(false);
     });
 
@@ -80,6 +80,8 @@ const UserContex = ({ children }) => {
     signInEmailPassword,
     setUser,
     user,
+    course,
+    setCourse,
   };
   return (
     <div>

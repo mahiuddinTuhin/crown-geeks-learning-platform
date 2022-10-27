@@ -9,7 +9,6 @@ const Login = () => {
     darkMode,
     googleSignIn,
     githubSignIn,
-    createUser,
     setUser,
     signInEmailPassword,
   } = useContext(MainContext);

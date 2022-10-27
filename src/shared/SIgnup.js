@@ -10,7 +10,6 @@ const SIgnup = () => {
     googleSignIn,
     githubSignIn,
     updateUserInfo,
-    user,
     setUser,
   } = useContext(MainContext);
   const handleSubmit = (e) => {
@@ -19,7 +18,6 @@ const SIgnup = () => {
     const name = from.name.value;
     const email = from.email.value;
     const password = from.password.value;
-    const repeate = from.repeate.value;
     const url = from.url.value;
     createUser(email, password)
       .then((result) => {
