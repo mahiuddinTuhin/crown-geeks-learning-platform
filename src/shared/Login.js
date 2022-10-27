@@ -1,9 +1,42 @@
 import React, { useContext } from "react";
+import { BsGithub } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 import { MainContext } from "../context/UserContex";
 
 const Login = () => {
-  const { darkMode } = useContext(MainContext);
+  const {
+    darkMode,
+    googleSignIn,
+    githubSignIn,
+    createUser,
+    setUser,
+    signInEmailPassword,
+  } = useContext(MainContext);
+  const googleSignInHandler = () => {
+    googleSignIn()
+      .then((result) => {
+        setUser(result.user);
+      })
+      .catch((error) => console.error(error));
+  };
+  const githubSignInHandler = () => {
+    githubSignIn()
+      .then((result) => {
+        setUser(result.user);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    signInEmailPassword(email, password)
+      .then((result) => {})
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div>
@@ -18,7 +51,7 @@ const Login = () => {
               Log in
             </h2>
             <div className="mt-12">
-              <form>
+              <form onSubmit={handleSignIn}>
                 <div>
                   <div
                     style={{ color: `${darkMode ? "white" : "black"}` }}
@@ -27,8 +60,10 @@ const Login = () => {
                     Email Address
                   </div>
                   <input
+                    required
                     className="w-full text-lg py-2 pl-3 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type=""
+                    type="email"
+                    name="email"
                     placeholder="mike@gmail.com"
                   />
                 </div>
@@ -40,19 +75,23 @@ const Login = () => {
                     >
                       Password
                     </div>
-                    <div>
+                    <div
+                      className="tooltip tooltip-top "
+                      data-tip="can't remember you password?"
+                    >
                       <NavLink
                         style={{ color: `${darkMode ? "white" : "black"}` }}
-                        className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
-                                        cursor-pointer"
+                        className="text-xs font-display font-semibold text-indigo-600 hover:font-bold cursor-pointer"
                       >
                         Forgot Password?
                       </NavLink>
                     </div>
                   </div>
                   <input
+                    required
                     className="w-full text-lg py-2 pl-3 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type=""
+                    type="password"
+                    name="password"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -61,6 +100,8 @@ const Login = () => {
                     className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                 shadow-lg"
+                    type="submit"
+                    name="submit"
                   >
                     Log In
                   </button>
@@ -68,7 +109,7 @@ const Login = () => {
               </form>
               <div
                 style={{ color: `${darkMode ? "white" : "black"}` }}
-                className="mt-12 text-sm font-display font-semibold text-gray-700 text-center"
+                className="mt-2 text-sm font-display font-semibold text-gray-700 text-center"
               >
                 Don't have an account ?{" "}
                 <NavLink
@@ -77,6 +118,21 @@ const Login = () => {
                 >
                   Sign up
                 </NavLink>
+              </div>
+              <div className="flex justify-center my-6">
+                <button
+                  className="flex items-center border-2 px-4 py-1 mr-4"
+                  onClick={googleSignInHandler}
+                >
+                  Sign in with
+                  <FcGoogle className="ml-4"></FcGoogle>
+                </button>
+                <button
+                  onClick={githubSignInHandler}
+                  className="flex items-center border-2 px-4 py-1"
+                >
+                  Sign with <BsGithub className="ml-4"></BsGithub>{" "}
+                </button>
               </div>
             </div>
           </div>

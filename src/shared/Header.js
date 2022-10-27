@@ -26,7 +26,7 @@ export const Header = () => {
       className={`px-4 py-5 sm:max-w-xl md:max-w-full lg:max-w-screen md:px-24 lg:px-8 ${navBack}`}
     >
       <div className="relative flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center lg:ml-32">
           <NavLink
             to="/"
             aria-label="Company"
@@ -49,6 +49,7 @@ export const Header = () => {
                 Courses
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/faq"
@@ -69,65 +70,73 @@ export const Header = () => {
                 BLOG
               </NavLink>
             </li>
+            <li style={{ marginLeft: "30vw" }}>
+              <button
+                onClick={changeBackgroundMode}
+                className="flex items-center border border-slate-400 px-3 py-2 rounded-xl bg-slate-800"
+              >
+                {darkMode ? (
+                  <>
+                    <BsLightbulb className="text-white"></BsLightbulb>{" "}
+                    <span className="ml-3">Light</span>{" "}
+                  </>
+                ) : (
+                  <>
+                    <BsLightbulbOff className="text-white"></BsLightbulbOff>{" "}
+                    <span className="ml-3 text-white">Dark</span>{" "}
+                  </>
+                )}
+              </button>
+            </li>
+            <li>
+              {user?.uid ? (
+                <div className="flex items-center ">
+                  <button
+                    onClick={handleLogOut}
+                    className="bg-slate-500 text-slate-100 px-4 py-1 mx-4 rounded 
+              hover:bg-slate-400"
+                  >
+                    Signout
+                  </button>
+                  <div
+                    className="tooltip tooltip-bottom "
+                    data-tip={`${user?.displayName}`}
+                  >
+                    <img
+                      src={user?.photoURL}
+                      className="w-10 h-10 rounded-full"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              ) : (
+                <ul className="flex items-center hidden space-x-8 lg:flex">
+                  <li>
+                    <NavLink
+                      to="/login"
+                      aria-label="Sign in"
+                      title="Sign in"
+                      className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-400 onHover`}
+                    >
+                      Sign in
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/signup"
+                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                      Sign up
+                    </NavLink>
+                  </li>
+                </ul>
+              )}
+            </li>
           </ul>
         </div>
-        <button
-          onClick={changeBackgroundMode}
-          className="flex items-center border border-slate-400 px-3 py-2 rounded-xl bg-slate-800"
-        >
-          {darkMode ? (
-            <>
-              <BsLightbulb className="text-white"></BsLightbulb>{" "}
-              <span className="ml-3">Light</span>{" "}
-            </>
-          ) : (
-            <>
-              <BsLightbulbOff className="text-white"></BsLightbulbOff>{" "}
-              <span className="ml-3 text-white">Dark</span>{" "}
-            </>
-          )}
-        </button>
-        {user?.uid ? (
-          <div className="flex items-center">
-            <button
-              onClick={handleLogOut}
-              className="bg-slate-500 text-slate-100 px-4 py-1 mx-4 rounded 
-              hover:bg-slate-400"
-            >
-              Sign out
-            </button>
-            <div>
-              <img
-                src={user?.photoURL}
-                className="w-10 h-10 rounded-full"
-                alt=""
-              />
-            </div>
-          </div>
-        ) : (
-          <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <NavLink
-                to="/login"
-                aria-label="Sign in"
-                title="Sign in"
-                className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-400 onHover`}
-              >
-                Sign in
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/signup"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign up
-              </NavLink>
-            </li>
-          </ul>
-        )}
+
         <div className="lg:hidden">
           <button
             aria-label="Open Menu"
@@ -185,6 +194,52 @@ export const Header = () => {
                 </div>
                 <nav>
                   <ul className="space-y-4">
+                    <li>
+                      {user?.uid ? (
+                        <div className="flex items-center flex-row-reverse justify-end">
+                          <button
+                            onClick={handleLogOut}
+                            className="bg-slate-500 text-slate-100 px-4 py-1 mx-4 rounded 
+              hover:bg-slate-400"
+                          >
+                            Signout
+                          </button>
+                          <div
+                            className="tooltip tooltip-bottom "
+                            data-tip={`${user?.displayName}`}
+                          >
+                            <img
+                              src={user?.photoURL}
+                              className="w-10 h-10 rounded-full"
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <ul className="flex items-center hidden space-x-8 lg:flex">
+                          <li>
+                            <NavLink
+                              to="/login"
+                              aria-label="Sign in"
+                              title="Sign in"
+                              className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-400 onHover`}
+                            >
+                              Sign in
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/signup"
+                              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Sign up"
+                              title="Sign up"
+                            >
+                              Sign up
+                            </NavLink>
+                          </li>
+                        </ul>
+                      )}
+                    </li>
                     <li>
                       <NavLink
                         to="/courses"

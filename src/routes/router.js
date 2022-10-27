@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Courses from "../components/courses/Courses";
 import Home from "../components/home/Home";
 import Main from "../Layout/Main";
 import Login from "../shared/Login";
@@ -23,7 +24,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <Home></Home>,
+        element: <Courses></Courses>,
+        loader: fetch("https://crown-geeks-server.vercel.app/courses"),
       },
       {
         path: "/blog",

@@ -59,6 +59,7 @@ const SIgnup = () => {
         <div className="lg:w-1/2 xl:max-w-screen-sm">
           <div className="mt-4 px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">
             <h2
+              style={{ color: `${darkMode ? "white" : "indigo"}` }}
               className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold"
             >
