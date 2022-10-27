@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { MainContext } from "../context/UserContex";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
+
 const SIgnup = () => {
   const {
     darkMode,
     createUser,
     googleSignIn,
     githubSignIn,
+    emailVerification,
     updateUserInfo,
     setUser,
+    setError,
   } = useContext(MainContext);
+  const [accepted, setAccepted] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -22,10 +26,23 @@ const SIgnup = () => {
     createUser(email, password)
       .then((result) => {
         handleUpdateUserProfile(name, url);
+        from.reset();
+        handleVerify();
+        alert("Please verify your email address.");
       })
-      .catch((error) => console.error(error));
+      .catch((e) => {
+        console.error(e);
+        setError(e.message);
+      });
   };
 
+  const handleVerify = () => {
+    emailVerification()
+      .then(() => {})
+      .catch((error) => {
+        return console.log(error);
+      });
+  };
   const handleUpdateUserProfile = (name, photoURL) => {
     const profile = {
       displayName: name,
@@ -49,6 +66,9 @@ const SIgnup = () => {
         setUser(result.user);
       })
       .catch((error) => console.error(error));
+  };
+  const handleAccepted = (event) => {
+    setAccepted(event.target.checked);
   };
 
   return (
@@ -144,7 +164,18 @@ const SIgnup = () => {
                     placeholder="Repeat password"
                   />
                 </div>
-
+                <div>
+                  <input
+                    className="mr-4"
+                    type="checkbox"
+                    onClick={handleAccepted}
+                  />
+                  {
+                    <>
+                      Accept <Link to="/terms">Terms and conditions</Link>
+                    </>
+                  }
+                </div>
                 <div>
                   <button
                     type="submit"

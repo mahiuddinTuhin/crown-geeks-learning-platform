@@ -29,13 +29,13 @@ const CourseDetails = () => {
               <span>Plus free shipping! Use code:</span>
               <span className="font-bold text-lg">MAMBA</span>
             </div>
-            <a
-              href="/"
+            <NavLink
+              to="/"
               rel="noreferrer noopener"
               className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block bg-gray-50 text-gray-900 border-gray-400 hover:badge-error hover:text-slate-100"
             >
               Enroll Now
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -135,7 +135,10 @@ const CourseDetails = () => {
           </div>
           <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
             {course_content.map((e) => (
-              <p className="flex text-3xl items-center">
+              <p
+                className="flex text-3xl items-center"
+                key={Math.floor(Math.random() * 100000)}
+              >
                 <DiVisualstudio className=" text-3xl mr-4 text-fuchsia-800" />
                 {e}
               </p>
@@ -233,13 +236,13 @@ const CourseDetails = () => {
                       <span>Seminar with practicle principle</span>
                     </li>
                   </ul>
-                  <a
+                  <NavLink
                     rel="noopener noreferrer"
-                    href="/"
+                    to="/"
                     className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded bg-gray-800 text-violet-400"
                   >
                     Get Started
-                  </a>
+                  </NavLink>
                 </div>
               </div>
               <div className="w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
@@ -276,13 +279,13 @@ const CourseDetails = () => {
                       <span>Seminar with practicle principle</span>
                     </li>
                   </ul>
-                  <a
+                  <NavLink
                     rel="noopener noreferrer"
-                    href="/"
+                    to="/"
                     className="inline-block w-full px-5 py-3 font-semibold tracking-wider text-center rounded bg-violet-400 text-gray-900"
                   >
                     Get Started
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>

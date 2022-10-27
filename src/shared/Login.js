@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { MainContext } from "../context/UserContex";
 
 const Login = () => {
@@ -10,31 +10,63 @@ const Login = () => {
     googleSignIn,
     githubSignIn,
     setUser,
+    setLoading,
     signInEmailPassword,
   } = useContext(MainContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.form?.pathname || "/";
+
   const googleSignInHandler = () => {
     googleSignIn()
       .then((result) => {
         setUser(result.user);
+        setError("");
+        navigate(from, { replace: true });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => setError(error))
+      .finally(() => {
+        setLoading(false);
+      });
   };
   const githubSignInHandler = () => {
     githubSignIn()
       .then((result) => {
         setUser(result.user);
+        setError("");
+        navigate(from, { replace: true });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => setError(error))
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    const from = e.target;
-    const email = from.email.value;
-    const password = from.password.value;
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
     signInEmailPassword(email, password)
-      .then((result) => {})
-      .catch((error) => console.error(error));
+      .then((result) => {
+        const user = result.user;
+        form.reset();
+        setError("");
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        } else {
+          alert("Please varify your email first");
+        }
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -94,6 +126,7 @@ const Login = () => {
                     placeholder="Enter your password"
                   />
                 </div>
+                <p className="text-rose-400">{error}</p>
                 <div className="mt-10">
                   <button
                     className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide

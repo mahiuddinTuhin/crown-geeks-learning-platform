@@ -6,6 +6,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -30,7 +31,9 @@ const UserContex = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-
+  const emailVerification = () => {
+    return sendEmailVerification(auth.currentUser);
+  };
   const googleSignIn = () => {
     setLoading(true);
 
@@ -59,7 +62,9 @@ const UserContex = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser === null || currentUser.emailVerified) {
+        setUser(currentUser);
+      }
       setLoading(false);
     });
 
@@ -68,6 +73,7 @@ const UserContex = ({ children }) => {
     };
   }, []);
   const info = {
+    emailVerification,
     darkMode,
     loading,
     setLoading,

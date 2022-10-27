@@ -2,11 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
 import CourseDetails from "../components/courses/CourseDetails";
 import Courses from "../components/courses/Courses";
+import Error404 from "../components/Error404";
 import FAQ from "../components/FAQ/FAQ";
 import Main from "../Layout/Main";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import HomeContainer from "../shared/HomeContainer";
 import Login from "../shared/Login";
 import SIgnup from "../shared/SIgnup";
+import Terms from "../shared/Terms";
 
 export const router = createBrowserRouter([
   {
@@ -39,16 +42,32 @@ export const router = createBrowserRouter([
             `https://crown-geeks-server-i7su.vercel.app/course/${params.id}`
           );
         },
-        element: <CourseDetails></CourseDetails>,
+        element: (
+          <PrivateRoute>
+            <CourseDetails></CourseDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/blog",
-        element: <Blog />,
+        element: (
+          <PrivateRoute>
+            <Blog />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/faq",
         element: <FAQ />,
       },
+      {
+        path: "/terms",
+        element: <Terms />,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <Error404></Error404>,
   },
 ]);
