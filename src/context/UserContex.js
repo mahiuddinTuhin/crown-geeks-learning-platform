@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { useEffect } from "react";
@@ -19,47 +20,59 @@ const googleProvider = new GoogleAuthProvider();
 //  user context started here
 
 const UserContex = ({ children }) => {
+  const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateNameImage = (name, url) => {
-    updateProfile(user, {
-      displayName: name,
-      photoURL: url,
-    })
-      .then(() => {})
-      .catch((error) => console.log(error));
-  };
   const googleSignIn = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {})
-      .catch((error) => console.error(error));
+    setLoading(true);
+
+    return signInWithPopup(auth, googleProvider);
   };
 
   const githubSignIn = () => {
-    signInWithPopup(auth, githubProvider)
-      .then((result) => {})
-      .catch((error) => console.error(error));
+    setLoading(true);
+
+    return signInWithPopup(auth, githubProvider);
+  };
+
+  const updateUserInfo = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      console.log(currentUser);
+      setLoading(false);
     });
-    return () => unsubscribe();
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
   const info = {
     darkMode,
+    loading,
+    setLoading,
+    logOut,
+    updateUserInfo,
     setDarkMode,
     createUser,
     googleSignIn,
     githubSignIn,
+    setUser,
     user,
-    updateNameImage,
   };
   return (
     <div>

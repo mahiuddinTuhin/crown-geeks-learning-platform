@@ -4,8 +4,15 @@ import { MainContext } from "../context/UserContex";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 const SIgnup = () => {
-  const { darkMode, createUser, googleSignIn, githubSignIn } =
-    useContext(MainContext);
+  const {
+    darkMode,
+    createUser,
+    googleSignIn,
+    githubSignIn,
+    updateUserInfo,
+    user,
+    setUser,
+  } = useContext(MainContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -15,19 +22,37 @@ const SIgnup = () => {
     const repeate = from.repeate.value;
     const url = from.url.value;
     createUser(email, password)
-      .then((result) => {})
+      .then((result) => {
+        handleUpdateUserProfile(name, url);
+      })
       .catch((error) => console.error(error));
-
-    updateNameImage(name, url);
-    console.log(name, email, password, repeate, url);
   };
 
+  const handleUpdateUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+
+    updateUserInfo(profile)
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   const googleSignInHandler = () => {
-    googleSignIn();
+    googleSignIn()
+      .then((result) => {
+        setUser(result.user);
+      })
+      .catch((error) => console.error(error));
   };
   const githubSignInHandler = () => {
-    githubSignIn();
+    githubSignIn()
+      .then((result) => {
+        setUser(result.user);
+      })
+      .catch((error) => console.error(error));
   };
+
   return (
     <div>
       <div className="lg:flex">

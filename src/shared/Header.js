@@ -8,7 +8,14 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [navText, setNavText] = useState("gray");
   const [navBack, setNavBack] = useState("bg-violet-200");
-  const { darkMode, setDarkMode } = useContext(MainContext);
+  const { darkMode, setDarkMode, user, logOut } = useContext(MainContext);
+  console.log(user?.photoURL);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   const changeBackgroundMode = () => {
     setDarkMode(!darkMode);
     setNavText("white");
@@ -80,28 +87,47 @@ export const Header = () => {
             </>
           )}
         </button>
-        <ul className="flex items-center hidden space-x-8 lg:flex">
-          <li>
-            <NavLink
-              to="/login"
-              aria-label="Sign in"
-              title="Sign in"
-              className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-400 onHover`}
+        {user?.uid ? (
+          <div className="flex items-center">
+            <button
+              onClick={handleLogOut}
+              className="bg-slate-500 text-slate-100 px-4 py-1 mx-4 rounded 
+              hover:bg-slate-400"
             >
-              Sign in
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/signup"
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Sign up
-            </NavLink>
-          </li>
-        </ul>
+              Sign out
+            </button>
+            <div>
+              <img
+                src={user?.photoURL}
+                className="w-10 h-10 rounded-full"
+                alt=""
+              />
+            </div>
+          </div>
+        ) : (
+          <ul className="flex items-center hidden space-x-8 lg:flex">
+            <li>
+              <NavLink
+                to="/login"
+                aria-label="Sign in"
+                title="Sign in"
+                className={`font-medium tracking-wide text-${navText}-700 transition-colors duration-200 hover:text-purple-400 onHover`}
+              >
+                Sign in
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/signup"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Sign up
+              </NavLink>
+            </li>
+          </ul>
+        )}
         <div className="lg:hidden">
           <button
             aria-label="Open Menu"
