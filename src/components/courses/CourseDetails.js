@@ -103,7 +103,10 @@ const CourseDetails = () => {
           </h2>
           <ul className="mt-24 grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-start justify-center">
             {course_overview.map((courseOverview) => (
-              <li className="flex items-start space-x-2">
+              <li
+                className="flex items-start space-x-2"
+                key={Math.floor(Math.random() * 100000)}
+              >
                 <DiTerminal className="text-purple-800 text-3xl" />
                 <span className="text-2xl">{courseOverview}</span>
               </li>
