@@ -1,10 +1,13 @@
 import React from "react";
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { MainContext } from "../../context/UserContex";
 import Course from "./Course";
 import CourseNav from "./CourseNav";
 
 const Courses = () => {
   const courses = useLoaderData();
+  const { setCourse } = useContext(MainContext);
 
   return (
     <div className=" flex flex-col lg:grid lg:grid-cols-5">

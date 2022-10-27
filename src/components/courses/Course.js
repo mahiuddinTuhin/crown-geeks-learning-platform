@@ -5,8 +5,8 @@ import { FiCoffee } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import { MainContext } from "../../context/UserContex";
 const Course = ({ course }) => {
-  const { setUser } = useContext(MainContext);
-  setUser(course);
+  const { setCourse } = useContext(MainContext);
+  setCourse(course);
   const {
     course_image,
     title,

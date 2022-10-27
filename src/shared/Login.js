@@ -3,7 +3,7 @@ import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { MainContext } from "../context/UserContex";
-
+import { toast } from "react-toastify";
 const Login = () => {
   const {
     darkMode,
@@ -58,7 +58,7 @@ const Login = () => {
         if (user.emailVerified) {
           navigate(from, { replace: true });
         } else {
-          alert("Please varify your email first");
+          toast.error("Please verify your email address.");
         }
       })
       .catch((error) => {

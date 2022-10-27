@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { MainContext } from "../context/UserContex";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
-
+import { toast } from "react-toastify";
 const SIgnup = () => {
   const {
     darkMode,
@@ -15,7 +15,7 @@ const SIgnup = () => {
     setUser,
     setError,
   } = useContext(MainContext);
-  const [accepted, setAccepted] = useState(false);
+  const [accept, setAccept] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -25,10 +25,13 @@ const SIgnup = () => {
     const url = from.url.value;
     createUser(email, password)
       .then((result) => {
-        handleUpdateUserProfile(name, url);
+        const user = result.user;
+        console.log(user);
+        setError("");
         from.reset();
+        handleUpdateUserProfile(name, url);
         handleVerify();
-        alert("Please verify your email address.");
+        toast.success("Please verify your email address.");
       })
       .catch((e) => {
         console.error(e);
@@ -67,8 +70,8 @@ const SIgnup = () => {
       })
       .catch((error) => console.error(error));
   };
-  const handleAccepted = (event) => {
-    setAccepted(event.target.checked);
+  const handleAccept = (event) => {
+    setAccept(event.target.checked);
   };
 
   return (
@@ -147,33 +150,17 @@ const SIgnup = () => {
                     placeholder="Enter your password"
                   />
                 </div>
-                <div className="pb-6">
-                  <div className="flex justify-between items-center">
-                    <div
-                      style={{ color: `${darkMode ? "white" : "black"}` }}
-                      className="mb-1 text-sm font-bold text-gray-700 tracking-wide"
-                    >
-                      Repeat Password
-                    </div>
-                  </div>
-                  <input
-                    name="repeate"
-                    required
-                    className="w-full text-lg py-2 pl-3 border-b border-gray-300 focus:outline-none focus:border-indigo-500 text-gray-500"
-                    type="password"
-                    placeholder="Repeat password"
-                  />
-                </div>
-                <div>
+
+                <div className="mb-4">
                   <input
                     className="mr-4"
                     type="checkbox"
-                    onClick={handleAccepted}
+                    onClick={handleAccept}
                   />
                   {
-                    <>
+                    <span>
                       Accept <Link to="/terms">Terms and conditions</Link>
-                    </>
+                    </span>
                   }
                 </div>
                 <div>

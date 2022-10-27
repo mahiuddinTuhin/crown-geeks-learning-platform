@@ -65,8 +65,8 @@ export default function FAQ() {
             components.
           </AccordionBody>
         </Accordion>
-        <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(3)}>
+        <Accordion open={open === 4} icon={<Icon id={4} open={open} />}>
+          <AccordionHeader onClick={() => handleOpen(4)}>
             How do you explain High performance of react?
           </AccordionHeader>
           <AccordionBody>
@@ -75,8 +75,8 @@ export default function FAQ() {
             results in much faster web applications.
           </AccordionBody>
         </Accordion>
-        <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(3)}>
+        <Accordion open={open === 5} icon={<Icon id={5} open={open} />}>
+          <AccordionHeader onClick={() => handleOpen(5)}>
             Can web browsers read JSX directly?
           </AccordionHeader>
           <AccordionBody>
@@ -87,8 +87,8 @@ export default function FAQ() {
             we use Babel
           </AccordionBody>
         </Accordion>
-        <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(3)}>
+        <Accordion open={open === 6} icon={<Icon id={6} open={open} />}>
+          <AccordionHeader onClick={() => handleOpen(6)}>
             What is the virtual DOM?
           </AccordionHeader>
           <AccordionBody>
@@ -102,8 +102,8 @@ export default function FAQ() {
             frequently asked react interview questions.
           </AccordionBody>
         </Accordion>
-        <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(3)}>
+        <Accordion open={open === 7} icon={<Icon id={7} open={open} />}>
+          <AccordionHeader onClick={() => handleOpen(7)}>
             Why use React instead of other frameworks, like Angular?
           </AccordionHeader>
           <AccordionBody>
@@ -134,16 +134,6 @@ export default function FAQ() {
             extension that we can use to debug React applications. This makes
             the process of debugging React to web applications faster and
             easier.
-          </AccordionBody>
-        </Accordion>
-        <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(3)}>
-            How do you explain High performance of react?
-          </AccordionHeader>
-          <AccordionBody>
-            High performance: React updates only those components that have
-            changed, rather than updating all the components at once. This
-            results in much faster web applications.
           </AccordionBody>
         </Accordion>
       </Fragment>

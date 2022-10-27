@@ -67,8 +67,8 @@ export default function Blog() {
             component in question; otherwise, redirect the user to sign-in page.
           </AccordionBody>
         </Accordion>
-        <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(3)}>
+        <Accordion open={open === 4} icon={<Icon id={4} open={open} />}>
+          <AccordionHeader onClick={() => handleOpen(4)}>
             What is Node and how does it work?
           </AccordionHeader>
           <AccordionBody>
