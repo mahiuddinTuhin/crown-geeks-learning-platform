@@ -1,32 +1,32 @@
-###### Crown GEEKS
+# Crown GEEKS
 
-## An tech based online training website
+##3 An tech based online training website
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Some Framwork And Librarby I used in this project
 
-## "\*" React Single Page Website
+#### \* React Single Page Website
 
-## "\*" Styling with DaisyUI and Material-tailwind
+#### \* Styling with DaisyUI and Material-tailwind
 
-## "\*" Firebase has ensured a great line up with authentication. Thank you Firebase
+#### \* Firebase has ensured a great line up with authentication. Thank you Firebase
 
-## "\*" React-Icon. I am so much pleased with react Icon. It ease our life a lot alongside react.
+#### \* React-Icon. I am so much pleased with react Icon. It ease our life a lot alongside react.
 
-## "\*" Finally the biggest fighter "THE REACT" who comes with little feature but tons of work done within a second.
+#### \* Finally the biggest fighter "THE REACT" who comes with little feature but tons of work done within a second.
 
-### Some important feature
+## Some important feature
 
-## "\*" There are some course based on programmig languge and tech related
+#### \* There are some course based on programmig languge and tech related
 
-## "\*" User can enroll the course from this site. though enrollement yet to finish.
+#### \* User can enroll the course from this site. though enrollement yet to finish.
 
-## "\*" Without login user can not visit any course detail page
+#### \* Without login user can not visit any course detail page
 
-## "\*" If user missmatch the password and email, it will show some error
+#### \* If user missmatch the password and email, it will show some error
 
-## "\*" There is a blog page with few q&n about node and routing related
+#### \* There is a blog page with few q&n about node and routing related
 
 ## Available Scripts
 
