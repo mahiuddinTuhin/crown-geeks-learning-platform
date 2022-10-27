@@ -1,6 +1,32 @@
 ###### Crown GEEKS
-## An tech based online training website 
+
+## An tech based online training website
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### Some Framwork And Librarby I used in this project
+
+## "\*" React Single Page Website
+
+## "\*" Styling with DaisyUI and Material-tailwind
+
+## "\*" Firebase has ensured a great line up with authentication. Thank you Firebase
+
+## "\*" React-Icon. I am so much pleased with react Icon. It ease our life a lot alongside react.
+
+## "\*" Finally the biggest fighter "THE REACT" who comes with little feature but tons of work done within a second.
+
+### Some important feature
+
+## "\*" There are some course based on programmig languge and tech related
+
+## "\*" User can enroll the course from this site. though enrollement yet to finish.
+
+## "\*" Without login user can not visit any course detail page
+
+## "\*" If user missmatch the password and email, it will show some error
+
+## "\*" There is a blog page with few q&n about node and routing related
 
 ## Available Scripts
 
@@ -68,4 +94,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# b610-learning-platform-client-side-mahiuddinTuhin" 
+"# b610-learning-platform-client-side-mahiuddinTuhin"
